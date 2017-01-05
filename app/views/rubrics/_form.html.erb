@@ -1,0 +1,16 @@
+<%= form_for @rubric do |f| %>
+    <% if @rubric.errors.any? %>
+        <div id="errors">
+          <h2><%= pluralize(@rubric.errors.count, "error") %> prevented this rubric from saving:</h2>
+          <ul>
+            <% @rubric.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <h4><%= f.label :title %></h4>
+    <%= f.text_field :title, class: "form-control", autofocus: true %><br>
+    <%= f.button "Submit", :submit => "", class: "btn btn-success" %>
+<% end %>
+

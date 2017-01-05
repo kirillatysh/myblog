@@ -1,0 +1,21 @@
+<p><%= link_to "Back", :rubric_posts, class: "btn btn-default" %></p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title"><strong><%= @post.title %></h1>
+  </div>
+  <div class="panel-body vcenter">
+    <p><%= @post.body %></p>
+    <% if can? :manage, :all %>
+        <div class="btn-group" role="group">
+          <%= link_to 'Edit', edit_rubric_post_path(@rubric,@post), class: "btn btn-warning" %>
+          <%= link_to 'Delete', rubric_post_path(@rubric, @post), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+    <% end %>
+  </div>
+</div>
+<div id="comments">
+  <%= render "cmmnts/comments"%>
+  <% if can? :create, Post  %>
+      <%= render "cmmnts/form" %>
+  <% end %>
+</div>

@@ -1,0 +1,5 @@
+<%= form_for [@rubric, @post, @post.cmmnts.build], remote: true do |f| %>
+    <h6><%= f.label :body %></h6>
+    <%= f.text_area :body, class: "form-control" %><br>
+    <%= f.button "Добавить комментарий", :submit => "", class: "btn btn-success" %>
+<% end %>

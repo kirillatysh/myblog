@@ -1,0 +1,18 @@
+<%= form_for [@rubric, @user, @post] do |f| %>
+    <% if @post.errors.any? %>
+        <div id="errors">
+          <h2><%= pluralize(@post.errors.count, "error") %> prevented this post from saving:</h2>
+          <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <h5><%= f.label :title %></h5>
+    <%= f.text_field :title, class: "form-control", autofocus: true %><br>
+    <h5><%= f.label :body %></h5>
+    <%= f.text_area :body, class: "form-control" %><br>
+
+    <%= f.button "Add post", :submit => "", class: "btn btn-success" %>
+<% end %>

@@ -1,0 +1,15 @@
+<%= link_to "Back", :root, class: "btn btn-default" %>
+<% if can? :create, Post %>
+    <%= link_to "New post", new_rubric_post_path, class: "btn btn-primary" %>
+<% end %>
+<hr>
+<% @rubric.posts.each do |post| %>
+    <div class="rubric_wrapper">
+      <h2 class="title"><%= link_to post.title, rubric_post_path(@rubric, post)%></h2>
+      <p>Comments <span class="badge"><%= post.cmmnts.count %></span></p>
+      <p class="date">Submitted <%= time_ago_in_words(post.created_at) %> ago</p>
+    </div>
+    <hr>
+<% end %>
+
+

@@ -1,0 +1,22 @@
+<% if can? :manage, :all %>
+    <%= link_to "New rubric", new_rubric_path, class: "btn btn-primary" %>
+    <hr>
+<% end %>
+
+<% @rubric.each do |rubric| %>
+    <div class="rubric_wrapper">
+      <h2 class="title"><%= link_to rubric.title, rubric %></h2>
+      <p>Posts <span class="badge"><%= rubric.posts.count %></span></p>
+      <p class="date">Submitted <%= time_ago_in_words(rubric.created_at) %> ago
+      </p>
+      <% if can? :manage, :all %>
+          <div class="btn-group" role="group">
+            <%= link_to 'Edit', edit_rubric_path(rubric), class: "btn btn-warning" %>
+            <%= link_to 'Delete', rubric_path(rubric), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+    <% end %>
+    </div>
+    <hr>
+<% end %>
+
+<%= will_paginate @rubric, renderer: BootstrapPagination::Rails %>
